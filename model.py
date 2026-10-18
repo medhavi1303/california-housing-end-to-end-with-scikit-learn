@@ -42,8 +42,14 @@ def explore_correlations(df):
     return correl.sort_values(ascending=False)
     pass
 
-# Step 5 - add_ratio_features (not yet solved)
-# TODO: implement
+# Step 5 - add_ratio_features
+def add_ratio_features(df):
+    df_copy=df.copy()
+    df_copy["rooms_per_house"]=df["total_rooms"]/df["households"]
+    df_copy["bedrooms_ratio"]=df["total_bedrooms"]/df["total_rooms"]
+    df_copy["people_per_house"]=df["population"]/df["households"]
+    return df_copy
+    pass
 
 # Step 6 - split_features_labels (not yet solved)
 # TODO: implement
