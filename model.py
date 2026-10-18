@@ -27,8 +27,12 @@ def income_categories(df):
     return inc_cat.astype(int)
     pass
 
-# Step 3 - stratified_split (not yet solved)
-# TODO: implement
+# Step 3 - stratified_split
+import sklearn
+def stratified_split(df, test_size=0.2, random_state=42):
+    train_set,test_set=sklearn.model_selection.train_test_split(df,test_size=test_size,random_state=random_state,stratify=income_categories(df))
+    return train_set,test_set;
+    pass
 
 # Step 4 - explore_correlations (not yet solved)
 # TODO: implement
