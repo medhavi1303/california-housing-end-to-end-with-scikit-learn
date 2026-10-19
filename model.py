@@ -111,8 +111,11 @@ def build_preprocessing(n_clusters=10, gamma=1.0, random_state=42):
     return preprocessor
     pass
 
-# Step 11 - rmse (not yet solved)
-# TODO: implement
+# Step 11 - rmse
+from sklearn.metrics import root_mean_squared_error as rms
+def rmse(y_true, y_pred):
+    return rms(y_pred,y_true)
+    pass
 
 # Step 12 - dummy_baseline_rmse (not yet solved)
 # TODO: implement
