@@ -100,8 +100,16 @@ def categorical_pipeline():
     return make_pipeline(SimpleImputer(strategy="most_frequent",missing_values=None),OneHotEncoder(handle_unknown="ignore"))
     pass
 
-# Step 10 - build_preprocessing (not yet solved)
-# TODO: implement
+# Step 10 - build_preprocessing
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import FunctionTransformer
+from sklearn.compose import ColumnTransformer
+def build_preprocessing(n_clusters=10, gamma=1.0, random_state=42):
+    num_val=["total_bedrooms", "total_rooms", "population", "households", "median_income"]
+    log_pipe=Pipeline(steps=[('num_imputer',SimpleImputer(strategy="median")),('log_trans',FunctionTransformer(np.log, feature_names_out="one-to-one")),("num_stand",StandardScaler())])
+    preprocessor=ColumnTransformer(transformers=[('log',log_pipe,num_val),('geo',ClusterSimilarity(n_clusters,gamma,random_state),["latitude", "longitude"]),('cat',categorical_pipeline(),["ocean_proximity"])],remainder=numeric_pipeline())
+    return preprocessor
+    pass
 
 # Step 11 - rmse (not yet solved)
 # TODO: implement
