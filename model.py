@@ -137,8 +137,11 @@ def cross_val_rmse(model, X, y, cv=3):
     scores=scores.astype(float)
     return {"scores":scores.tolist(),"mean":float(np.mean(scores)),"std":float(np.std(scores))}
 
-# Step 14 - linear_model (not yet solved)
-# TODO: implement
+# Step 14 - linear_model
+from sklearn.linear_model import LinearRegression
+def linear_model(preprocessing):
+    return make_pipeline(preprocessing,LinearRegression())
+    pass
 
 # Step 15 - forest_model (not yet solved)
 # TODO: implement
